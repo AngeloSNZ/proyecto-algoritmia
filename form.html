@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Registrar equipo | Equipos biomédicos{% endblock %}
+{% block content %}
+  <div class="breadcrumb"><a href="{{ url_for('index') }}">Inventario</a> / Registrar equipo</div>
+  <div class="page-heading compact">
+    <div><p class="eyebrow">NUEVO REGISTRO</p><h1>Registrar equipo biomédico</h1><p class="intro">Completa los datos que tengas disponibles. Código y nombre son obligatorios.</p></div>
+  </div>
+  <form class="panel form-panel" method="post" enctype="multipart/form-data">
+    <section class="form-section">
+      <h2>Identificación del equipo</h2>
+      <div class="form-grid">
+        <label>Código de inventario *<input name="codigo" required maxlength="50" value="{{ equipo.get('codigo', '') }}" placeholder="Ej. EB-001"></label>
+        <label>Nombre del equipo *<input name="nombre" required maxlength="120" value="{{ equipo.get('nombre', '') }}" placeholder="Ej. Monitor de signos vitales"></label>
+        <label>Marca<input name="marca" value="{{ equipo.get('marca', '') }}" placeholder="Marca"></label>
+        <label>Modelo<input name="modelo" value="{{ equipo.get('modelo', '') }}" placeholder="Modelo"></label>
+        <label>Número de serie<input name="serial" value="{{ equipo.get('serial', '') }}" placeholder="Serial del fabricante"></label>
+        <label>Fabricante<input name="fabricante" value="{{ equipo.get('fabricante', '') }}" placeholder="Fabricante"></label>
+      </div>
+    </section>
+    <section class="form-section">
+      <h2>Ubicación y control</h2>
+      <div class="form-grid">
+        <label>Área o ubicación<input name="ubicacion" value="{{ equipo.get('ubicacion', '') }}" placeholder="Ej. Urgencias"></label>
+        <label>Responsable<input name="responsable" value="{{ equipo.get('responsable', '') }}" placeholder="Nombre del responsable"></label>
+        <label>Fecha de adquisición<input type="date" name="fecha_adquisicion" value="{{ equipo.get('fecha_adquisicion', '') }}"></label>
+        <label>Garantía hasta<input type="date" name="garantia_hasta" value="{{ equipo.get('garantia_hasta', '') }}"></label>
+        <label>Estado
+          <select name="estado">
+            {% for estado in ['Operativo', 'En mantenimiento', 'Fuera de servicio', 'Dado de baja'] %}
+              <option value="{{ estado }}" {% if equipo.get('estado', 'Operativo') == estado %}selected{% endif %}>{{ estado }}</option>
+            {% endfor %}
+          </select>
+        </label>
+      </div>
+    </section>
+    <section class="form-section">
+      <h2>Fotografía y observaciones</h2>
+      <label class="upload-box">Fotografía del equipo
+        <input type="file" name="foto" accept="image/png,image/jpeg,image/webp" capture="environment" id="foto">
+        <small>En un celular compatible, se puede abrir la cámara. También puedes elegir una foto guardada. JPG, PNG o WEBP; máximo 8 MB.</small>
+        <span id="file-name" class="file-name">Ningún archivo seleccionado</span>
+      </label>
+      <label>Observaciones<textarea name="observaciones" rows="4" placeholder="Estado físico, accesorios, novedades...">{{ equipo.get('observaciones', '') }}</textarea></label>
+    </section>
+    <div class="form-actions"><a class="button secondary" href="{{ url_for('index') }}">Cancelar</a><button class="button primary" type="submit">Guardar equipo</button></div>
+  </form>
+  <script>
+    const photoInput = document.getElementById('foto');
+    const fileName = document.getElementById('file-name');
+    photoInput.addEventListener('change', () => {
+      fileName.textContent = photoInput.files.length ? photoInput.files[0].name : 'Ningún archivo seleccionado';
+    });
+  </script>
+{% endblock %}
