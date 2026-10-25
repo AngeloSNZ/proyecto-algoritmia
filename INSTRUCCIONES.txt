@@ -1,0 +1,55 @@
+SISTEMA DE REGISTRO DE EQUIPOS BIOMÉDICOS
+=========================================
+
+ANTES DE EMPEZAR
+1. Instala Python desde https://www.python.org/downloads/windows/
+   IMPORTANTE: durante la instalación marca la casilla "Add python.exe to PATH".
+2. Instala Visual Studio Code desde https://code.visualstudio.com/download.
+3. Descomprime la carpeta del proyecto en una ubicación fácil de encontrar, por ejemplo Documentos.
+
+CÓMO ABRIR EL PROYECTO
+1. Abre Visual Studio Code.
+2. En el menú File (Archivo), selecciona Open Folder (Abrir carpeta).
+3. Selecciona la carpeta "registro_equipos_biomedicos" que descomprimiste.
+4. En el menú Terminal, selecciona New Terminal (Nueva terminal).
+
+INSTALAR LO NECESARIO (SOLO LA PRIMERA VEZ)
+Copia este comando en la terminal de VS Code y pulsa Enter:
+    python -m pip install -r requirements.txt
+
+Si Windows no reconoce "python", prueba:
+    py -m pip install -r requirements.txt
+
+INICIAR LA PÁGINA
+En la terminal escribe:
+    python app.py
+
+Si no funciona, prueba:
+    py app.py
+
+Cuando aparezca una dirección parecida a http://127.0.0.1:5000, mantén abierta la terminal.
+Abre Chrome y escribe:
+    http://127.0.0.1:5000
+
+CÓMO TOMAR FOTOGRAFÍAS
+- En un celular, abre la página desde el navegador del celular si este puede acceder a la aplicación.
+- En un computador, elige un archivo de imagen desde el formulario.
+- El campo de fotografía sugiere abrir la cámara en celulares compatibles. El comportamiento depende del navegador y dispositivo.
+- Formatos permitidos: JPG, JPEG, PNG y WEBP. Máximo 8 MB por envío.
+
+DÓNDE SE GUARDAN LOS DATOS
+- La base de datos se crea automáticamente como "equipos.db" dentro de esta carpeta.
+- Las fotografías se guardan en "static/uploads".
+- No borres esos archivos ni la carpeta si quieres conservar los registros.
+- Haz copias de seguridad de "equipos.db" y de la carpeta "static/uploads".
+
+LÍMITE
+La aplicación permite registrar hasta cinco equipos en total.
+
+DETENER LA APLICACIÓN
+Vuelve a la terminal donde está corriendo y pulsa Ctrl+C.
+
+NOTAS
+- La aplicación está pensada para una demostración local y no tiene inicio de sesión.
+- No la publiques en internet ni la uses para datos sensibles sin añadir seguridad, copias de seguridad y controles de acceso.
+- La cámara puede requerir que la página se abra en el propio dispositivo. Para uso desde otro celular en la misma red hay que ajustar la ejecución y el acceso de red; esta primera versión está configurada para uso local.
